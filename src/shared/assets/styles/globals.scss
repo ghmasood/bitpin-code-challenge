@@ -1,3 +1,4 @@
+@use './vars.scss';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,8 +9,6 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -17,113 +16,94 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: var(--secondary-950);
+
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: var(--secondary-950);
+
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --popover-foreground: var(--secondary-950);
+
+    --primary: var(--primary-500);
+    --primary-foreground: 165 100% 4%;
+    --primary-text: 163 100% 20%; /* Primary text color with good contrast when standing alone, directly over background color */
+
+    --secondary: var(--secondary-100);
+    --secondary-foreground: var(--secondary-900);
+
+    --muted: var(--secondary-100);
+    --muted-foreground: var(--secondary-500);
+
+    --accent: var(--secondary-100);
+    --accent-foreground: var(--secondary-900);
+
+    --destructive: var(--destructive-500);
+    --destructive-foreground: var(--destructive-50);
+
+    --border: var(--secondary-200);
+
+    --input: var(--secondary-200);
+
+    --ring: var(--primary-600);
+
     --radius: 0.5rem;
+
+    --selection: var(--primary-200);
+    --selection-foreground: var(--primary-950);
+
+    input:is(:-webkit-autofill, :autofill),
+    input:is(:-webkit-autofill, :autofill):hover,
+    input:is(:-webkit-autofill, :autofill):focus,
+    input:is(:-webkit-autofill, :autofill):active {
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: hsl(var(--foreground));
+      color: hsl(var(--foreground));
+      caret-color: hsl(var(--foreground));
+      box-shadow: inset 0 0 20px 20px hsl(var(--background) / 50%);
+    }
+
+    input:is(:-webkit-autofill, :autofill) {
+      border-color: hsl(var(--border));
+    }
+
+    input:is(:-webkit-autofill, :autofill):focus {
+      border-color: hsl(var(--primary));
+    }
   }
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --background: 0 0% 0%;
+    --foreground: var(--secondary-50);
+
+    --card: 0 0% 2%;
+    --card-foreground: var(--secondary-50);
+
+    --popover: 0 0% 2%;
+    --popover-foreground: var(--secondary-50);
+
+    --primary: var(--primary-500);
+    --primary-foreground: 165 100% 9%;
+    --primary-text: 160 100% 42%; /* Primary text color with good contrast when standing alone, directly over background color */
+
+    --secondary: 0 0% 17%;
+    --secondary-foreground: var(--secondary-50);
+
+    --muted: 0 0% 17%;
+    --muted-foreground: var(--secondary-400);
+
+    --accent: 0 0% 17%;
+    --accent-foreground: var(--secondary-50);
+
+    --destructive: var(--destructive-900);
+    --destructive-foreground: var(--destructive-50);
+
+    --border: var(--secondary-800);
+
+    --input: var(--secondary-800);
+
+    --ring: var(--primary-500);
   }
 }
 
@@ -133,5 +113,9 @@ button:focus-visible {
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  ::selection {
+    @apply bg-selection/80 text-selection-foreground;
   }
 }
