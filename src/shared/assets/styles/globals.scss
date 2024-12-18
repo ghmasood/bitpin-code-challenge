@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Vazir, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -29,7 +29,7 @@
 
     --primary: var(--primary-500);
     --primary-foreground: 165 100% 4%;
-    --primary-text: 163 100% 20%; /* Primary text color with good contrast when standing alone, directly over background color */
+    --primary-text: 163 100% 20%;
 
     --secondary: var(--secondary-100);
     --secondary-foreground: var(--secondary-900);
