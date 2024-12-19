@@ -15,8 +15,8 @@ function MarketItem({ marketData }: MarketItemProps) {
           className='w-10 h-10 rounded-full'
           loading='lazy'
         />
-        <div className='flex flex-col gap-0.5'>
-          <span className='text-lg font-extrabold'>
+        <div className='flex flex-col'>
+          <span className='font-extrabold'>
             {marketData.currency1.title_fa}
           </span>
           <span className='text-xs font-semibold text-neutral-500'>

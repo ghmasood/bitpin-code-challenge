@@ -7,7 +7,7 @@ function Layout() {
   return (
     <Suspense fallback={<FallBackPage />}>
       <Header />
-      <main className='relative top-24 px-12'>
+      <main className='mt-[4.25rem] min-h-[calc(100vh_-_4.25rem)] px-12 py-4 '>
         <Outlet />
       </main>
     </Suspense>

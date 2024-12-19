@@ -10,8 +10,15 @@ export const useMarketList = () => {
       queryFn: fetchMarketList,
     });
 
+  const USDTMarket =
+    data?.results.filter((market) => market.currency2.code === 'USDT') ?? [];
+
+  const IRTMarket =
+    data?.results.filter((market) => market.currency2.code === 'IRT') ?? [];
+
   return {
-    marketList: data,
+    USDTMarket,
+    IRTMarket,
     isLoading,
     isFetching,
     isError,
