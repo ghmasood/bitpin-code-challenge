@@ -9,7 +9,7 @@ function Layout() {
   return (
     <Suspense fallback={<FallBackPage />}>
       <Header />
-      <main className='mt-[4.25rem] min-h-[calc(100vh_-_4.25rem)] px-12 py-4'>
+      <main className='mt-[4.25rem] min-h-[calc(100vh_-_4.25rem)] px-4 py-4 lg:px-12'>
         <Outlet />
       </main>
     </Suspense>

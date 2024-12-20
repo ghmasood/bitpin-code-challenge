@@ -11,7 +11,6 @@ type OrdersListProps = {
   wAvgPrice: number;
 };
 function OrdersList({ orderType, orders, pair, totalRemain, totalValue, wAvgPrice }: OrdersListProps) {
-  //
   const codes = pair.split('/');
 
   return (
@@ -21,7 +20,7 @@ function OrdersList({ orderType, orders, pair, totalRemain, totalValue, wAvgPric
         <span className='text-center'>{`مقدار (${codes[0]})`}</span>
         <span className='text-end'>{`ارزش (${codes[1]})`}</span>
       </div>
-      <div className='flex flex-col gap-2'>
+      <div className='flex flex-col'>
         {orders.map((i) => (
           <div className='flex justify-between gap-2 [&>span]:w-1/3'>
             <span>{i.price}</span>
