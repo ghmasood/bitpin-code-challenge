@@ -1,8 +1,11 @@
-import { useState, type FC } from 'react';
-import { useMarketList } from './hooks/useMarketList';
-import { Tabs, TabsList, TabsTrigger } from '@/shared/UI/tabs';
-import MarketItem from './UI/marketItem';
+import { type FC, useState } from 'react';
+
 import Pagination from '@/shared/UI/pagination';
+import { Tabs, TabsList, TabsTrigger } from '@/shared/UI/tabs';
+
+import { useMarketList } from './hooks/useMarketList';
+
+import MarketItem from './UI/marketItem';
 
 const MarketListPage: FC = () => {
   // hook to get market data
@@ -27,27 +30,19 @@ const MarketListPage: FC = () => {
   if (isError) return <p>Error loading data</p>;
 
   return (
-    <div className='flex flex-col gap-8 items-center h-full'>
-      <div className='w-full flex justify-center'>
-        <Tabs
-          value={tab}
-          onValueChange={(e) => setTab(e as 'IRT' | 'USDT')}
-          className='w-1/2'
-        >
+    <div className='flex h-full flex-col items-center gap-8'>
+      <div className='flex w-full justify-center'>
+        <Tabs value={tab} onValueChange={(e) => setTab(e as 'IRT' | 'USDT')} className='w-1/2'>
           <TabsList className='grid w-full grid-cols-2'>
             <TabsTrigger value='IRT'>بازار پایه تومانی</TabsTrigger>
             <TabsTrigger value='USDT'>بازار پایه تتری</TabsTrigger>
           </TabsList>
         </Tabs>
       </div>
-      <div className='flex flex-col gap-3 w-full'>
+      <div className='flex w-full flex-col gap-3'>
         {isLoading
-          ? [...new Array(10)].map((_, index) => (
-              <MarketItem key={index} loading />
-            ))
-          : slicedList.map((market) => (
-              <MarketItem key={market.id} marketData={market} />
-            ))}
+          ? [...new Array(10)].map((_, index) => <MarketItem key={index} loading />)
+          : slicedList.map((market) => <MarketItem key={market.id} marketData={market} />)}
       </div>
       <Pagination
         page={tab === 'IRT' ? IRTPage : USDTPage}

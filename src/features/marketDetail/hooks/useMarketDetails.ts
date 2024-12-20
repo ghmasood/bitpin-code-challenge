@@ -1,9 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import {
-  fetchMarketBuy,
-  fetchMarketMatch,
-  fetchMarketSell,
-} from '../api/marketDetailApi';
+
+import { fetchMarketBuy, fetchMarketMatch, fetchMarketSell } from '../api/marketDetailApi';
 import { TransactionsResponse, ordersResponse } from '../types';
 
 export const useMarketDetail = (id: number) => {

@@ -1,7 +1,9 @@
-import { MarketListPage } from '@/features/marketList';
-import { MarketDetailPage } from '@/features/marketDetail';
-import Layout from '@/shared/UI/layout';
 import { createBrowserRouter } from 'react-router';
+
+import { MarketDetailPage } from '@/features/marketDetail';
+import { MarketListPage } from '@/features/marketList';
+import Layout from '@/shared/UI/layout';
+
 const router = createBrowserRouter([
   {
     path: '/',

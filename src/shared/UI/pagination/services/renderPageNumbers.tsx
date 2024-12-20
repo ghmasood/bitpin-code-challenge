@@ -1,9 +1,6 @@
 import type { ReactNode } from 'react';
-import {
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-} from '../basicPagination';
+
+import { PaginationEllipsis, PaginationItem, PaginationLink } from '../basicPagination';
 
 export const renderPageNumbers = (
   page: number,
@@ -63,10 +60,7 @@ export const renderPageNumbers = (
 
     items.push(
       <PaginationItem key={totalPageCount}>
-        <PaginationLink
-          onClick={() => setPage(totalPageCount)}
-          isActive={page === totalPageCount}
-        >
+        <PaginationLink onClick={() => setPage(totalPageCount)} isActive={page === totalPageCount}>
           {totalPageCount}
         </PaginationLink>
       </PaginationItem>

@@ -1,6 +1,8 @@
 import { RouterProvider } from 'react-router';
+
 import router from '@/router';
 import { ThemeProvider } from '@/shared/providers/theme-provider';
+
 import { QueryProvider } from './shared/providers/QueryProvider';
 
 function App() {
