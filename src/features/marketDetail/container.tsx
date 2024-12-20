@@ -1,4 +1,5 @@
 import { type FC, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { Button } from '@/shared/UI/button';
 import { Input } from '@/shared/UI/input';
@@ -77,7 +78,20 @@ const MarketDetailPage: FC = () => {
             </span>
           </div>
 
-          <Button className={clsx([side === 'buy' ? 'bg-green-500' : 'bg-red-500', 'text-lg font-black text-white'])}>
+          <Button
+            className={clsx([side === 'buy' ? 'bg-green-500' : 'bg-red-500', 'text-lg font-black text-white'])}
+            onClick={() => {
+              toast.promise(
+                new Promise((resolve) => setTimeout(resolve, 3000)),
+                {
+                  pending: 'در حال ثبت سفارش',
+                  success: 'سفارش شما با موفقیت ثبت شد.',
+                  error: 'خطا در ثبت سفارش',
+                },
+                { theme: 'colored' }
+              );
+            }}
+          >
             سفارش
           </Button>
         </div>

@@ -1,4 +1,5 @@
 import { RouterProvider } from 'react-router';
+import { ToastContainer } from 'react-toastify';
 
 import router from '@/router';
 import { ThemeProvider } from '@/shared/providers/theme-provider';
@@ -10,6 +11,7 @@ function App() {
     <QueryProvider>
       <ThemeProvider defaultTheme='system' storageKey='vite-ui-theme'>
         <RouterProvider router={router} />
+        <ToastContainer position='bottom-right' style={{ fontFamily: 'vazir !important' }} />
       </ThemeProvider>
     </QueryProvider>
   );

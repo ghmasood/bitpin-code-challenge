@@ -1,6 +1,7 @@
 import { type FC, useState } from 'react';
 
 import Pagination from '@/shared/UI/pagination';
+import SwipeDetector from '@/shared/UI/swipeDetector';
 import { Tabs, TabsList, TabsTrigger } from '@/shared/UI/tabs';
 
 import { useMarketList } from './hooks/useMarketList';
@@ -30,26 +31,28 @@ const MarketListPage: FC = () => {
   if (isError) return <p>Error loading data</p>;
 
   return (
-    <div className='flex h-full flex-col items-center gap-8'>
-      <div className='flex w-full justify-center'>
-        <Tabs value={tab} onValueChange={(e) => setTab(e as 'IRT' | 'USDT')} className='w-1/2'>
-          <TabsList className='grid w-full grid-cols-2'>
-            <TabsTrigger value='IRT'>بازار پایه تومانی</TabsTrigger>
-            <TabsTrigger value='USDT'>بازار پایه تتری</TabsTrigger>
-          </TabsList>
-        </Tabs>
+    <SwipeDetector onSwipeLeft={() => setTab('USDT')} onSwipeRight={() => setTab('IRT')}>
+      <div className='flex h-full flex-col items-center gap-8'>
+        <div className='flex w-full justify-center'>
+          <Tabs value={tab} onValueChange={(e) => setTab(e as 'IRT' | 'USDT')}>
+            <TabsList className='grid w-full grid-cols-2'>
+              <TabsTrigger value='IRT'>بازار پایه تومانی</TabsTrigger>
+              <TabsTrigger value='USDT'>بازار پایه تتری</TabsTrigger>
+            </TabsList>
+          </Tabs>
+        </div>
+        <div className='flex w-full flex-col gap-1'>
+          {isLoading
+            ? [...new Array(10)].map((_, index) => <MarketItem key={index} loading />)
+            : slicedList.map((market) => <MarketItem key={market.id} marketData={market} />)}
+        </div>
+        <Pagination
+          page={tab === 'IRT' ? IRTPage : USDTPage}
+          setPage={tab === 'IRT' ? setIRTPage : setUSDTPage}
+          totalPage={totalPage}
+        />
       </div>
-      <div className='flex w-full flex-col gap-3'>
-        {isLoading
-          ? [...new Array(10)].map((_, index) => <MarketItem key={index} loading />)
-          : slicedList.map((market) => <MarketItem key={market.id} marketData={market} />)}
-      </div>
-      <Pagination
-        page={tab === 'IRT' ? IRTPage : USDTPage}
-        setPage={tab === 'IRT' ? setIRTPage : setUSDTPage}
-        totalPage={totalPage}
-      />
-    </div>
+    </SwipeDetector>
   );
 };
 

@@ -10,20 +10,22 @@ type MarketItemProps = {
 };
 function MarketItem({ marketData, loading = false }: MarketItemProps) {
   return (
-    <div className='flex w-full items-center border-b py-2'>
-      <div className='flex w-2/5 shrink-0 grow items-center gap-2'>
+    <div className='flex w-full items-center border-b py-1'>
+      <div className='flex w-1/2 shrink-0 grow items-center gap-1'>
         {loading ? (
           <div className='skeleton h-10 w-10 !rounded-full' />
         ) : (
           <img
             style={{ background: `#${marketData?.currency1.color}` }}
             src={marketData?.currency1.image}
-            className='h-10 w-10 !rounded-full'
+            className='h-8 w-8 !rounded-full'
             loading='lazy'
           />
         )}
         <div className='flex flex-col items-start gap-0.5'>
-          <span className={clsx(['min-w-20 truncate font-extrabold', loading && 'skeleton'])}>
+          <span
+            className={clsx(['min-w-16 max-w-32 truncate text-sm font-extrabold sm:max-w-none', loading && 'skeleton'])}
+          >
             {marketData?.currency1.title_fa ?? '-'}
           </span>
           <span className={clsx(['min-w-10 text-xs font-semibold text-neutral-500', loading && 'skeleton'])}>
@@ -32,9 +34,9 @@ function MarketItem({ marketData, loading = false }: MarketItemProps) {
         </div>
       </div>
 
-      <div className='flex w-2/5 grow flex-col justify-between md:flex-row md:items-center'>
+      <div className='flex w-1/3 grow flex-col justify-between text-sm md:flex-row md:items-center'>
         <div className='flex flex-col items-start gap-0.5'>
-          <span className={clsx(['min-w-20 text-lg font-extrabold', loading && 'skeleton'])}>
+          <span className={clsx(['min-w-16 font-extrabold', loading && 'skeleton'])}>
             {/* {new Decimal(marketData.price).toFixed(
             marketData.currency2.code === 'IRT'
               ? marketData.currency1.decimal_irt
@@ -68,7 +70,9 @@ function MarketItem({ marketData, loading = false }: MarketItemProps) {
         className={clsx(['min-w-[15%] text-center', loading && 'skeleton'])}
         href={`/${marketData?.id}/?pair=${marketData?.code}`}
       >
-        <Button>معامله درصدی</Button>
+        <Button size='sm' className='w-fit px-1'>
+          معامله درصدی
+        </Button>
       </a>
     </div>
   );
