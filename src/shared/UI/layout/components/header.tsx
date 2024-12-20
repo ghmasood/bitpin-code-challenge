@@ -7,7 +7,7 @@ import { ThemeToggle } from './themeToggle';
 function Header() {
   const { theme } = useTheme();
   return (
-    <header className='fixed top-0 z-[999] flex w-full items-center justify-between bg-background px-12 py-4 shadow-lg'>
+    <header className='fixed top-0 z-[999] flex w-full items-center justify-between border-b border-input/50 bg-background px-12 py-4 shadow-lg'>
       <a href='/'>{theme === 'dark' ? <DarkLogo className='h-8 w-auto' /> : <LightLogo className='h-8 w-auto' />}</a>
       <ThemeToggle />
     </header>
