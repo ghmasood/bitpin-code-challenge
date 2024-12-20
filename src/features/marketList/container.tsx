@@ -4,7 +4,7 @@ import { Tabs, TabsList, TabsTrigger } from '@/shared/UI/tabs';
 import MarketItem from './UI/marketItem';
 import Pagination from '@/shared/UI/pagination';
 
-const MarketList: FC = () => {
+const MarketListPage: FC = () => {
   // hook to get market data
   const { USDTMarket, IRTMarket, isError, isLoading } = useMarketList();
 
@@ -24,7 +24,6 @@ const MarketList: FC = () => {
       ? marketList.slice((IRTPage - 1) * pageSize, IRTPage * pageSize - 1)
       : marketList.slice((USDTPage - 1) * pageSize, USDTPage * pageSize - 1);
 
-  if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error loading data</p>;
 
   return (
@@ -42,9 +41,13 @@ const MarketList: FC = () => {
         </Tabs>
       </div>
       <div className='flex flex-col gap-3 w-full'>
-        {slicedList.map((market) => (
-          <MarketItem key={market.id} marketData={market} />
-        ))}
+        {isLoading
+          ? [...new Array(10)].map((_, index) => (
+              <MarketItem key={index} loading />
+            ))
+          : slicedList.map((market) => (
+              <MarketItem key={market.id} marketData={market} />
+            ))}
       </div>
       <Pagination
         page={tab === 'IRT' ? IRTPage : USDTPage}
@@ -55,4 +58,4 @@ const MarketList: FC = () => {
   );
 };
 
-export { MarketList };
+export { MarketListPage };
