@@ -44,4 +44,4 @@ const SwipeDetector = ({ onSwipeLeft, onSwipeRight, children }: SwipeDetectorPro
   );
 };
 
-export default SwipeDetector;
+export { SwipeDetector };

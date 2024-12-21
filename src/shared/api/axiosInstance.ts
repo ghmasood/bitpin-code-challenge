@@ -1,14 +1,16 @@
+import { toast } from 'react-toastify';
+
+import { ENV } from '@/shared/lib';
+
 import axios, { AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
-const backApi: AxiosInstance = axios.create({
-  baseURL: 'https://api.bitpin.org', // Points to Next.js API routes
+const api: AxiosInstance = axios.create({
+  baseURL: ENV.BASE_URL,
   headers: { Accept: '*/*', 'Content-Type': 'application/json' },
 });
 
-// Request interceptor: Add headers or other common configurations
-backApi.interceptors.request.use(
+api.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    // Optionally modify request here (e.g., add auth headers if needed)
     console.log(`Request made to ${config.url}`);
     return config;
   },
@@ -18,23 +20,21 @@ backApi.interceptors.request.use(
   }
 );
 
-// Response interceptor: Log or handle response errors globally
-backApi.interceptors.response.use(
+api.interceptors.response.use(
   (response: AxiosResponse) => {
-    // Optionally handle successful response (logging, etc.)
     console.log(`Response received from ${response.config.url}`);
     return response;
   },
   (error) => {
-    console.error('Response error:', error.response?.data || error.message);
+    console.log(error);
+    toast.error(error.message || 'An error occurred');
 
-    // Handle errors based on status, e.g., 401 for auth, retry logic, etc.
     if (error.response && error.response.status === 401) {
-      // Handle authorization errors, e.g., refresh token or redirect
+      // for example: if 401 happen, redirect to login page
     }
 
     return Promise.reject(error);
   }
 );
 
-export default backApi;
+export { api };

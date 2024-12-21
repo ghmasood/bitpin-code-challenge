@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import { PaginationEllipsis, PaginationItem, PaginationLink } from '../basicPagination';
+import { PaginationEllipsis, PaginationItem, PaginationLink } from '../BasicPagination';
 
 export const renderPageNumbers = (
   page: number,

@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router';
 
 import { MarketDetailPage } from '@/features/marketDetail';
 import { MarketListPage } from '@/features/marketList';
-import Layout from '@/shared/UI/layout';
+import { Layout } from '@/shared/UI';
 
 const router = createBrowserRouter([
   {

@@ -1,8 +1,8 @@
-import backApi from '@/shared/api/axiosInstance';
+import { api, endpoints } from '@/shared/api/';
 
-import { MarketListApiResponse } from '../types/marketListApi';
+import { MarketListApiResponse } from './dto';
 
 export const fetchMarketList = async (): Promise<MarketListApiResponse> => {
-  const { data } = await backApi.get<MarketListApiResponse>('/v1/mkt/markets/');
+  const { data } = await api<MarketListApiResponse>({ ...endpoints.marketList() });
   return data;
 };

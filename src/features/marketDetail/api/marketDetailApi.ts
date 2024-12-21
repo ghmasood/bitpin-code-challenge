@@ -1,18 +1,26 @@
-import backApi from '@/shared/api/axiosInstance';
+import { api, endpoints } from '@/shared/api';
 
-import type { TransactionsResponse, ordersResponse } from '../types';
+import { TransactionsResponse, ordersResponse } from './dto';
 
 export const fetchMarketSell = async (id: number): Promise<ordersResponse> => {
-  const { data } = await backApi.get<ordersResponse>(`/v2/mth/actives/${id}/?type=sell`);
+  const { data } = await api<ordersResponse>({
+    ...endpoints.ordersList(id),
+    params: { type: 'sell' },
+  });
   return data;
 };
 
 export const fetchMarketBuy = async (id: number): Promise<ordersResponse> => {
-  const { data } = await backApi.get<ordersResponse>(`/v2/mth/actives/${id}/?type=buy`);
+  const { data } = await api<ordersResponse>({
+    ...endpoints.ordersList(id),
+    params: { type: 'buy' },
+  });
   return data;
 };
 
 export const fetchMarketMatch = async (id: number): Promise<TransactionsResponse> => {
-  const { data } = await backApi.get<TransactionsResponse>(`/v1/mth/matches/${id}/`);
+  const { data } = await api<TransactionsResponse>({
+    ...endpoints.transactionsList(id),
+  });
   return data;
 };

@@ -1,43 +1,38 @@
-import { type FC, useState } from 'react';
+import { type FC } from 'react';
 
-import Pagination from '@/shared/UI/pagination';
-import SwipeDetector from '@/shared/UI/swipeDetector';
-import { Tabs, TabsList, TabsTrigger } from '@/shared/UI/tabs';
+import { Pagination, SwipeDetector, Tabs, TabsList, TabsTrigger } from '@/shared/UI';
 
 import { useMarketList } from './hooks/useMarketList';
 
 import MarketItem from './UI/marketItem';
+import strings from './strings.json';
 
 const MarketListPage: FC = () => {
-  // hook to get market data
-  const { USDTMarket, IRTMarket, isError, isLoading } = useMarketList();
-
-  // state for pagination and market selection
-  const [tab, setTab] = useState<'IRT' | 'USDT'>('USDT');
-  const [USDTPage, setUSDTPage] = useState(1);
-  const [IRTPage, setIRTPage] = useState(1);
-
-  /// pagination logic
-  const pageSize = 10;
-  const marketList = tab === 'USDT' ? USDTMarket : IRTMarket;
-  const totalLength = marketList.length;
-  const totalPage = Math.ceil(totalLength / pageSize);
-
-  const slicedList =
-    tab === 'IRT'
-      ? marketList.slice((IRTPage - 1) * pageSize, IRTPage * pageSize - 1)
-      : marketList.slice((USDTPage - 1) * pageSize, USDTPage * pageSize - 1);
+  const {
+    isError,
+    isLoading,
+    IRTPage,
+    setIRTPage,
+    USDTPage,
+    setUSDTPage,
+    totalPage,
+    swipeLeftHandler,
+    swipeRightHandler,
+    tab,
+    setTab,
+    slicedList,
+  } = useMarketList();
 
   if (isError) return <p>Error loading data</p>;
 
   return (
-    <SwipeDetector onSwipeLeft={() => setTab('USDT')} onSwipeRight={() => setTab('IRT')}>
+    <SwipeDetector onSwipeLeft={swipeLeftHandler} onSwipeRight={swipeRightHandler}>
       <div className='flex h-full flex-col items-center gap-8'>
         <div className='flex w-full justify-center'>
-          <Tabs value={tab} onValueChange={(e) => setTab(e as 'IRT' | 'USDT')}>
+          <Tabs className='w-2/3' value={tab} onValueChange={(e) => setTab(e as 'IRT' | 'USDT')}>
             <TabsList className='grid w-full grid-cols-2'>
-              <TabsTrigger value='IRT'>بازار پایه تومانی</TabsTrigger>
-              <TabsTrigger value='USDT'>بازار پایه تتری</TabsTrigger>
+              <TabsTrigger value='IRT'>{strings.irtMarket}</TabsTrigger>
+              <TabsTrigger value='USDT'>{strings.usdtMarket}</TabsTrigger>
             </TabsList>
           </Tabs>
         </div>

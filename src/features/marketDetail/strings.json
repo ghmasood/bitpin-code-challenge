@@ -1,0 +1,20 @@
+{
+  "buy": "خرید",
+  "sell": "فروش",
+  "ordersListBuy": "لیست سفارشات خرید",
+  "ordersListSell": "لیست سفارشات فروش",
+  "transactionsList": "لیست معاملات",
+  "order": "سفارش",
+  "orderValue": "مقدار سفارش (%)",
+  "orderAmount": "حجم مورد سفارش",
+  "avgPrice": "قیمت میانگین",
+  "priceAccumulated": "مبلغ قابل پرداخت",
+  "ordering": "در حال ثبت سفارش",
+  "orderAccepted": "سفارش شما با موفقیت ثبت شد",
+  "orderRejected": "متاسفانه سفارش شما رد شد",
+  "price": "قیمت",
+  "transactionAmount": "مقدار معامله شده",
+  "time": "زمان",
+  "value": "ارزش",
+  "amount": "مقدار"
+}

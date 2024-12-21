@@ -1,8 +1,10 @@
-import { Button } from '@/shared/UI/button';
+import { Button } from '@/shared/UI';
+import { toFixedSeparated } from '@/shared/lib/';
 
 import clsx from 'clsx';
 
-import type { Market } from '../types/marketListApi';
+import { Market } from '../api/dto';
+import strings from '../strings.json';
 
 type MarketItemProps = {
   marketData?: Market;
@@ -37,17 +39,12 @@ function MarketItem({ marketData, loading = false }: MarketItemProps) {
       <div className='flex w-1/3 grow flex-col justify-between text-sm md:flex-row md:items-center'>
         <div className='flex flex-col items-start gap-0.5'>
           <span className={clsx(['min-w-16 font-extrabold', loading && 'skeleton'])}>
-            {/* {new Decimal(marketData.price).toFixed(
-            marketData.currency2.code === 'IRT'
-              ? marketData.currency1.decimal_irt
-              : marketData.currency1.decimal
-          )} */}
-            {Number(marketData?.price).toLocaleString(undefined, {
-              minimumFractionDigits:
-                marketData?.currency2.code === 'IRT'
-                  ? marketData?.currency1.decimal_irt
-                  : marketData?.currency1.decimal,
-            })}
+            {toFixedSeparated(
+              marketData?.price ?? 0,
+              marketData?.currency2.code === 'IRT'
+                ? (marketData?.currency1.decimal_irt ?? 0)
+                : (marketData?.currency1.decimal ?? 0)
+            )}
           </span>
           <span className={clsx(['min-w-10 text-xs font-semibold text-neutral-500', loading && 'skeleton'])}>
             {marketData?.currency2.title_fa ?? '-'}
@@ -71,7 +68,7 @@ function MarketItem({ marketData, loading = false }: MarketItemProps) {
         href={`/${marketData?.id}/?pair=${marketData?.code}`}
       >
         <Button size='sm' className='w-fit px-1'>
-          معامله درصدی
+          {strings.percentOrder}
         </Button>
       </a>
     </div>

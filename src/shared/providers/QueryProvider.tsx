@@ -11,9 +11,9 @@ export const QueryProvider: React.FC<QueryProviderProps> = ({ children }) => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        retry: 2, // Retry failed queries twice
-        refetchOnWindowFocus: false, // Disable refetching on window focus
-        // refetchInterval: 3000, // Refetch every 3 seconds
+        retry: 2,
+        refetchOnWindowFocus: false,
+        // refetchInterval: 3000,
       },
     },
   });

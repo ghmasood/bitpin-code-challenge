@@ -1,14 +1,17 @@
-import DarkLogo from '@/shared/assets/logos/logo-dark.svg?react';
-import LightLogo from '@/shared/assets/logos/logo-light.svg?react';
-import { useTheme } from '@/shared/providers/theme-provider';
+import Logo from '@/shared/assets/logo.svg?react';
+import { useTheme } from '@/shared/providers/ThemeProvider';
 
-import { ThemeToggle } from './themeToggle';
+import clsx from 'clsx';
+
+import { ThemeToggle } from './ThemeToggle';
 
 function Header() {
   const { theme } = useTheme();
   return (
     <header className='fixed end-0 start-0 top-0 z-[999] flex w-full items-center justify-between border-b border-input/50 bg-background px-4 py-4 shadow-lg lg:px-12'>
-      <a href='/'>{theme === 'dark' ? <DarkLogo className='h-8 w-auto' /> : <LightLogo className='h-8 w-auto' />}</a>
+      <a href='/'>
+        <Logo className={clsx('h-8 w-auto', theme === 'dark' ? 'text-[#d3d3d3]' : 'text-[#333]')} />
+      </a>
       <ThemeToggle />
     </header>
   );

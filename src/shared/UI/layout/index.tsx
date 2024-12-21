@@ -1,9 +1,9 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router';
 
-import Header from './components/header';
+import Header from './components/Header';
 
-import FallBackPage from '../fallbackPage';
+import FallBackPage from '../FallbackPage';
 
 function Layout() {
   return (
@@ -16,4 +16,4 @@ function Layout() {
   );
 }
 
-export default Layout;
+export { Layout };

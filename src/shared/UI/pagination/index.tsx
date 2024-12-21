@@ -4,7 +4,7 @@ import {
   PaginationItem,
   PaginationNext,
   PaginationPrevious,
-} from './basicPagination';
+} from './BasicPagination';
 import { renderPageNumbers } from './services/renderPageNumbers';
 
 type PaginationProps = {
@@ -15,7 +15,7 @@ type PaginationProps = {
 
 function Pagination({ page, setPage, totalPage }: PaginationProps) {
   return (
-    <BasicPagination dir='ltr' className='select-none' onChange={(e) => console.log(e)}>
+    <BasicPagination dir='ltr' className='select-none'>
       <PaginationContent>
         <PaginationItem className={page > 1 ? '' : '!cursor-not-allowed opacity-50'}>
           <PaginationPrevious onClick={() => page > 1 && setPage((prev) => prev - 1)} />
@@ -29,4 +29,4 @@ function Pagination({ page, setPage, totalPage }: PaginationProps) {
   );
 }
 
-export default Pagination;
+export { Pagination };
